@@ -93,6 +93,42 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+
+  /// No description provided for @error_name_cant_be_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Name can\'t be empty'**
+  String get error_name_cant_be_empty;
+
+  /// No description provided for @error_name_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid name'**
+  String get error_name_invalid;
+
+  /// No description provided for @error_name_too_short_at_least_3_characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Name too short, at least 3 characters'**
+  String get error_name_too_short_at_least_3_characters;
+
+  /// No description provided for @error_name_too_long_maximum_20_characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Name too long, maximum 20 characters'**
+  String get error_name_too_long_maximum_20_characters;
+
+  /// No description provided for @error_name_invalid_special_characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Name contains invalid special characters'**
+  String get error_name_invalid_special_characters;
+
+  /// No description provided for @error_name_emoji_not_allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji not allowed'**
+  String get error_name_emoji_not_allowed;
 }
 
 class _AppLocalizationsDelegate

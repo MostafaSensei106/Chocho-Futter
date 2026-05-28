@@ -1,7 +1,10 @@
-// import '../../../l10n/app_localizations.dart';
+import 'package:flutter/widgets.dart';
+import 'package:injectable/injectable.dart';
 
-// @lazySingleton
-// class L10nService {
-//   AppLocalizations get(BuildContext context) => AppLocalizations.of(context)!;
-//   List<Locale> get supportedLocales => AppLocalizations.supportedLocales;
-// }
+import '../../../l10n/app_localizations.dart';
+
+@lazySingleton
+class L10nService {
+  AppLocalizations get(BuildContext context) => AppLocalizations.of(context)!;
+  List<Locale> get supportedLocales => AppLocalizations.supportedLocales;
+}

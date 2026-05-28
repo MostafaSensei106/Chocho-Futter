@@ -19,7 +19,7 @@ final class ValidationRegex {
     r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]',
   );
 
-  static final RegExp nameRegExp = RegExp(r'^[\p{L}\s]+$', unicode: true);
+  static final RegExp nameRegExp = RegExp(r'^[\p{L}\p{N}\s]+$', unicode: true);
 
   static final RegExp usernameRegExp = RegExp(r'^[a-zA-Z0-9._]{3,20}$');
 
@@ -40,6 +40,8 @@ final class ValidationRegex {
   );
 
   static final RegExp max20CharsRegExp = RegExp(r'^.{0,20}$');
+
+  static final RegExp min50CharsRegExp = RegExp(r'^.{50,}$');
 
   static final RegExp min8CharsRegExp = RegExp(r'^.{8,}$');
 
