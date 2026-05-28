@@ -1,5 +1,5 @@
-import 'package:temp/core/error/failures.dart';
-import 'package:temp/core/utils/result/result.dart';
+import '../../error/failures.dart';
+import '../../utils/result/result.dart';
 
 typedef ApiResult<T> = Result<T, Failures>;
 

@@ -5,11 +5,9 @@ import '../constants/api_header.dart';
 import '../constants/app_config.dart';
 import '../di/di.dart';
 import '../services/shared_prefs/base_pref_storage_service.dart';
-import '../utils/localization/logic/cubit/localization_cubit.dart';
 import '../utils/network/logic/cubit/network_cubit.dart';
 import 'dio_certificate_pinning_interceptor.dart';
 import 'dio_connectivity_request_retrier.dart';
-import 'dio_locale_interceptor.dart';
 import 'dio_token_interceptor.dart';
 import 'network_info/interface/base_network_info.dart';
 

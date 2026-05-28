@@ -1,10 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../modules/home/ui/page/home_page.dart';
 
-import '../di/di.dart';
 import 'cupertion_route_data.dart';
 
 part 'app_router.g.dart';
@@ -40,29 +38,22 @@ final class AppRouter {
   static const String about = '/about';
 
   static final router = GoRouter(
-    initialLocation: _initialLocation,
+    initialLocation: home,
     debugLogDiagnostics: true,
-    routes: $appRoutes,
+    routes: [...$appRoutes],
   );
-
-  static late String _initialLocation;
-
-  static void setInitialLocation(String value) {
-    _initialLocation = value;
-  }
 }
 
 @TypedGoRoute<HomeRoute>(path: AppRouter.home)
-class HomeRoute extends GoRouteData {
+class HomeRoute extends CupertinoRouteData with $HomeRoute {
   const HomeRoute();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) =>
-      const Placeholder();
+  Widget build(BuildContext context, GoRouterState state) => const HomePage();
 }
 
 @TypedGoRoute<LoginRoute>(path: AppRouter.login)
-class LoginRoute extends GoRouteData {
+class LoginRoute extends CupertinoRouteData with $LoginRoute {
   const LoginRoute();
 
   @override
