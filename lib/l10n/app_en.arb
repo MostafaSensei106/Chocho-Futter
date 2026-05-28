@@ -3,7 +3,7 @@
     "error_name_cant_be_empty": "Name can't be empty",
     "error_name_invalid": "Invalid name",
     "error_name_too_short_at_least_3_characters": "Name too short, at least 3 characters",
-    "error_name_too_long_maximum_20_characters": "Name too long, maximum 20 characters",
+    "error_name_too_long_maximum_50_characters": "Name too long, maximum 50 characters",
     "error_name_invalid_special_characters": "Name contains invalid special characters",
     "error_name_emoji_not_allowed": "Emoji not allowed"
 }

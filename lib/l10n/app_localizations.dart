@@ -112,11 +112,11 @@ abstract class AppLocalizations {
   /// **'Name too short, at least 3 characters'**
   String get error_name_too_short_at_least_3_characters;
 
-  /// No description provided for @error_name_too_long_maximum_20_characters.
+  /// No description provided for @error_name_too_long_maximum_50_characters.
   ///
   /// In en, this message translates to:
-  /// **'Name too long, maximum 20 characters'**
-  String get error_name_too_long_maximum_20_characters;
+  /// **'Name too long, maximum 50 characters'**
+  String get error_name_too_long_maximum_50_characters;
 
   /// No description provided for @error_name_invalid_special_characters.
   ///

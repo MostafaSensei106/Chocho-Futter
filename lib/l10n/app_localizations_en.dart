@@ -19,8 +19,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Name too short, at least 3 characters';
 
   @override
-  String get error_name_too_long_maximum_20_characters =>
-      'Name too long, maximum 20 characters';
+  String get error_name_too_long_maximum_50_characters =>
+      'Name too long, maximum 50 characters';
 
   @override
   String get error_name_invalid_special_characters =>

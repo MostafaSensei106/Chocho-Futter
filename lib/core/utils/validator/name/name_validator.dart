@@ -47,7 +47,7 @@ extension NameValidatorErrorExtension on NameValidatorError {
       NameValidatorError.invalid => l.error_name_invalid,
       NameValidatorError.tooShort =>
         l.error_name_too_short_at_least_3_characters,
-      NameValidatorError.tooLong => l.error_name_too_long_maximum_20_characters,
+      NameValidatorError.tooLong => l.error_name_too_long_maximum_50_characters,
       NameValidatorError.invalidSpecialChars =>
         l.error_name_invalid_special_characters,
       NameValidatorError.emojiNotAllowed => l.error_name_emoji_not_allowed,
