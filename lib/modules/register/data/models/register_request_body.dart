@@ -4,17 +4,13 @@ import '../../../../core/networking/api_model/api_model/api_model.dart';
 part 'register_request_body.g.dart';
 
 @JsonSerializable()
-class RegisterRequestBody extends ApiModel<RegisterRequestData> {
-  RegisterRequestBody({required super.data, required super.success});
-}
+class RegisterRequestBody {
+  RegisterRequestBody({required this.deviceID, required this.username});
 
-@JsonSerializable()
-class RegisterRequestData {
-  const RegisterRequestData({required this.deviceID, required this.username});
+  factory RegisterRequestBody.fromJson(Map<String, dynamic> json) =>
+      _$RegisterRequestBodyFromJson(json);
 
-  factory RegisterRequestData.fromJson(Map<String, dynamic> json) =>
-      _$RegisterRequestDataFromJson(json);
-  Map<String, dynamic> toJson() => _$RegisterRequestDataToJson(this);
+  Map<String, dynamic> toJson() => _$RegisterRequestBodyToJson(this);
 
   @JsonKey(name: 'device_id')
   final String deviceID;

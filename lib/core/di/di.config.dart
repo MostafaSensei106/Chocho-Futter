@@ -44,6 +44,11 @@ import 'package:temp/core/utils/network/logic/cubit/network_cubit.dart'
 import 'package:temp/core/utils/theme/data/base_theme_repository.dart' as _i968;
 import 'package:temp/core/utils/theme/data/theme_repository.dart' as _i941;
 import 'package:temp/core/utils/theme/logic/cubit/theme_cubit.dart' as _i512;
+import 'package:temp/modules/register/data/repository/register_repository.dart'
+    as _i93;
+import 'package:temp/modules/register/logic/cubit/register_cubit.dart' as _i50;
+import 'package:temp/modules/register/logic/usecase/register_usecase.dart'
+    as _i334;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -94,6 +99,12 @@ extension GetItInjectableX on _i174.GetIt {
         secureStorageService: gh<_i360.SecureStorageService>(),
       ),
     );
+    gh.factory<_i50.RegisterCubit>(
+      () => _i50.RegisterCubit(
+        registerUsecase: gh<_i334.RegisterUsecase>(),
+        prefStorageService: gh<_i1014.BasePrefStorageService>(),
+      ),
+    );
     gh.lazySingleton<_i968.BaseThemeRepository>(
       () => _i941.ThemeRepository(gh<_i1014.BasePrefStorageService>()),
     );
@@ -110,6 +121,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i882.ApiService>(
       () => injectionModule.apiService(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i93.RegisterRepository>(
+      () => _i93.RegisterRepositoryImpl(api: gh<_i882.ApiService>()),
     );
     return this;
   }
@@ -135,9 +149,14 @@ extension GetItInjectableX on _i174.GetIt {
 
   _i185.StorageFacade get storageFacade => get<_i185.StorageFacade>();
 
+  _i50.RegisterCubit get registerCubit => get<_i50.RegisterCubit>();
+
   _i941.ThemeRepository get themeRepository => get<_i941.ThemeRepository>();
 
   _i512.ThemeCubit get themeCubit => get<_i512.ThemeCubit>();
+
+  _i93.RegisterRepositoryImpl get registerRepositoryImpl =>
+      get<_i93.RegisterRepositoryImpl>();
 }
 
 class _$InjectionModule extends _i380.InjectionModule {}
