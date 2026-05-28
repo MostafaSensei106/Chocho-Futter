@@ -1,5 +1,8 @@
 {
     "@@locale": "en",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "please_wait": "Please wait...",
     "error_name_cant_be_empty": "Name can't be empty",
     "error_name_invalid": "Invalid name",
     "error_name_too_short_at_least_3_characters": "Name too short, at least 3 characters",

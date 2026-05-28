@@ -6,4 +6,5 @@ final class PrefKeys {
   static const String userId = 'userId';
   static const String isRememberMe = 'isRememberMe';
   static const String hasSeenOnboarding = 'hasSeenOnboarding';
+  static const String deviceId = 'deviceId';
 }

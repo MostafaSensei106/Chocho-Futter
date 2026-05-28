@@ -9,6 +9,15 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get please_wait => 'Please wait...';
+
+  @override
   String get error_name_cant_be_empty => 'Name can\'t be empty';
 
   @override

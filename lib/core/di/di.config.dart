@@ -21,6 +21,9 @@ import 'package:cocho/core/services/app_info/interface/base_package_info_adapter
     as _i893;
 import 'package:cocho/core/services/app_info/package_info_plus_adapter.dart'
     as _i460;
+import 'package:cocho/core/services/device/device_id_service.dart' as _i304;
+import 'package:cocho/core/services/device/interface/base_device_id_service.dart'
+    as _i37;
 import 'package:cocho/core/services/l10n/l10n_service.dart' as _i607;
 import 'package:cocho/core/services/share/base_share_service.dart' as _i325;
 import 'package:cocho/core/services/share/share_plus_service.dart' as _i262;
@@ -40,6 +43,7 @@ import 'package:cocho/core/utils/theme/data/base_theme_repository.dart'
     as _i770;
 import 'package:cocho/core/utils/theme/data/theme_repository.dart' as _i976;
 import 'package:cocho/core/utils/theme/logic/cubit/theme_cubit.dart' as _i851;
+import 'package:cocho/modules/login/logic/cubit/login_cubit.dart' as _i115;
 import 'package:cocho/modules/register/data/repository/register_repository.dart'
     as _i854;
 import 'package:cocho/modules/register/logic/cubit/register_cubit.dart'
@@ -105,11 +109,8 @@ extension GetItInjectableX on _i174.GetIt {
         secureStorageService: gh<_i640.SecureStorageService>(),
       ),
     );
-    gh.factory<_i333.RegisterCubit>(
-      () => _i333.RegisterCubit(
-        registerUsecase: gh<_i56.RegisterUsecase>(),
-        prefStorageService: gh<_i499.BasePrefStorageService>(),
-      ),
+    gh.lazySingleton<_i37.BaseDeviceIdService>(
+      () => _i304.DeviceIdService(gh<_i640.SecureStorageService>()),
     );
     gh.lazySingleton<_i815.NetworkCubit>(
       () => _i815.NetworkCubit(gh<_i198.BaseNetworkInfo>()),
@@ -125,6 +126,9 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.factory<_i115.LoginCubit>(
+      () => _i115.LoginCubit(gh<_i37.BaseDeviceIdService>()),
+    );
     gh.lazySingleton<_i851.ThemeCubit>(
       () => _i851.ThemeCubit(gh<_i770.BaseThemeRepository>()),
     );
@@ -133,6 +137,16 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i854.RegisterRepository>(
       () => _i854.RegisterRepositoryImpl(api: gh<_i923.ApiService>()),
+    );
+    gh.factory<_i56.RegisterUsecase>(
+      () => _i56.RegisterUsecase(repo: gh<_i854.RegisterRepository>()),
+    );
+    gh.factory<_i333.RegisterCubit>(
+      () => _i333.RegisterCubit(
+        registerUsecase: gh<_i56.RegisterUsecase>(),
+        prefStorageService: gh<_i499.BasePrefStorageService>(),
+        deviceIdService: gh<_i37.BaseDeviceIdService>(),
+      ),
     );
     return this;
   }
@@ -161,16 +175,22 @@ extension GetItInjectableX on _i174.GetIt {
 
   _i458.StorageFacade get storageFacade => get<_i458.StorageFacade>();
 
-  _i333.RegisterCubit get registerCubit => get<_i333.RegisterCubit>();
+  _i304.DeviceIdService get deviceIdService => get<_i304.DeviceIdService>();
 
   _i815.NetworkCubit get networkCubit => get<_i815.NetworkCubit>();
 
   _i976.ThemeRepository get themeRepository => get<_i976.ThemeRepository>();
 
+  _i115.LoginCubit get loginCubit => get<_i115.LoginCubit>();
+
   _i851.ThemeCubit get themeCubit => get<_i851.ThemeCubit>();
 
   _i854.RegisterRepositoryImpl get registerRepositoryImpl =>
       get<_i854.RegisterRepositoryImpl>();
+
+  _i56.RegisterUsecase get registerUsecase => get<_i56.RegisterUsecase>();
+
+  _i333.RegisterCubit get registerCubit => get<_i333.RegisterCubit>();
 }
 
 class _$InjectionModule extends _i360.InjectionModule {}

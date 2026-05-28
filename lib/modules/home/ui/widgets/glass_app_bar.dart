@@ -2,7 +2,16 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const GlassAppBar({super.key});
+  const GlassAppBar({
+    super.key,
+    this.title = 'C O S M O S',
+    this.leading,
+    this.trailing,
+  });
+
+  final String title;
+  final Widget? leading;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +37,16 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
                 height: kToolbarHeight,
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.menu, color: Color(0xFF8870BB)),
-                      onPressed: () => Scaffold.of(context).openDrawer(),
-                    ),
-                    const Expanded(
+                    leading ??
+                        IconButton(
+                          icon: const Icon(Icons.menu, color: Color(0xFF8870BB)),
+                          onPressed: () => Scaffold.of(context).openDrawer(),
+                        ),
+                    Expanded(
                       child: Text(
-                        'C O S M O S',
+                        title,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           letterSpacing: 6,
                           fontSize: 15,
                           fontWeight: FontWeight.w300,
@@ -44,14 +54,15 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
                         ),
                       ),
                     ),
-                    IconButton(
-                      icon: const Icon(
-                        Icons.lens,
-                        color: Color(0xFF8870BB),
-                        size: 18,
-                      ),
-                      onPressed: () {},
-                    ),
+                    trailing ??
+                        IconButton(
+                          icon: const Icon(
+                            Icons.lens,
+                            color: Color(0xFF8870BB),
+                            size: 18,
+                          ),
+                          onPressed: () {},
+                        ),
                   ],
                 ),
               ),

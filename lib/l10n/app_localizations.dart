@@ -94,6 +94,24 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('en')];
 
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @please_wait.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait...'**
+  String get please_wait;
+
   /// No description provided for @error_name_cant_be_empty.
   ///
   /// In en, this message translates to:
