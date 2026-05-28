@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import '../di/di.dart';
 import 'cupertion_route_data.dart';
 
+part 'app_router.g.dart';
+
 final class AppRouter {
   static const String root = '/';
   static const String onboarding = '/onboarding';
@@ -40,7 +42,7 @@ final class AppRouter {
   static final router = GoRouter(
     initialLocation: _initialLocation,
     debugLogDiagnostics: true,
-    routes: [...$appRoutes],
+    routes: $appRoutes,
   );
 
   static late String _initialLocation;
@@ -48,4 +50,22 @@ final class AppRouter {
   static void setInitialLocation(String value) {
     _initialLocation = value;
   }
+}
+
+@TypedGoRoute<HomeRoute>(path: AppRouter.home)
+class HomeRoute extends GoRouteData {
+  const HomeRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const Placeholder();
+}
+
+@TypedGoRoute<LoginRoute>(path: AppRouter.login)
+class LoginRoute extends GoRouteData {
+  const LoginRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const Placeholder();
 }
