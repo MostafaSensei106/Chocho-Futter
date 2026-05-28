@@ -22,7 +22,6 @@ class ApiErrorModel {
 
 @JsonSerializable()
 final class ErrorDetail {
-
   ErrorDetail({required this.code, required this.message});
 
   factory ErrorDetail.fromJson(Map<String, dynamic> json) =>

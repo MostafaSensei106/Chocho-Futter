@@ -1,4 +1,4 @@
-name: temp
+name: cocho
 description: "A new Flutter project."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -70,7 +70,7 @@ dev_dependencies:
   bloc_test: ^10.0.0
 
 flutter:
-
+  generate: true
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   # assets:

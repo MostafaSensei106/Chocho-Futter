@@ -2,13 +2,13 @@
 //
 // This may be replaced with something auto-generated from metadata (e.g., pubspec.yaml) in the
 // future. If not, the values below would default to using the project name when this becomes a
-// 'flutter create' template.
+// 'flutter create' cocholate.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = temp
+PRODUCT_NAME = cocho
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.mostafa.temp
+PRODUCT_BUNDLE_IDENTIFIER = com.mostafa.cocho
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 com.mostafa. All rights reserved.

@@ -17,37 +17,38 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:package_info_plus/package_info_plus.dart' as _i655;
 import 'package:share_plus/share_plus.dart' as _i998;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
-import 'package:temp/core/di/injection_module.dart' as _i380;
-import 'package:temp/core/networking/api_service/api_service.dart' as _i882;
-import 'package:temp/core/networking/network_info/interface/base_network_info.dart'
+import 'package:cocho/core/di/injection_module.dart' as _i380;
+import 'package:cocho/core/networking/api_service/api_service.dart' as _i882;
+import 'package:cocho/core/networking/network_info/interface/base_network_info.dart'
     as _i373;
-import 'package:temp/core/networking/network_info/network_info.dart' as _i566;
-import 'package:temp/core/services/app_info/app_info_service.dart' as _i1041;
-import 'package:temp/core/services/app_info/interface/base_app_info_service.dart'
+import 'package:cocho/core/networking/network_info/network_info.dart' as _i566;
+import 'package:cocho/core/services/app_info/app_info_service.dart' as _i1041;
+import 'package:cocho/core/services/app_info/interface/base_app_info_service.dart'
     as _i918;
-import 'package:temp/core/services/app_info/interface/base_package_info_adapter.dart'
+import 'package:cocho/core/services/app_info/interface/base_package_info_adapter.dart'
     as _i469;
-import 'package:temp/core/services/app_info/package_info_plus_adapter.dart'
+import 'package:cocho/core/services/app_info/package_info_plus_adapter.dart'
     as _i39;
-import 'package:temp/core/services/share/base_share_service.dart' as _i567;
-import 'package:temp/core/services/share/share_plus_service.dart' as _i391;
-import 'package:temp/core/services/shared_prefs/base_pref_storage_service.dart'
+import 'package:cocho/core/services/share/base_share_service.dart' as _i567;
+import 'package:cocho/core/services/share/share_plus_service.dart' as _i391;
+import 'package:cocho/core/services/shared_prefs/base_pref_storage_service.dart'
     as _i1014;
-import 'package:temp/core/services/shared_prefs/secure_storage_service.dart'
+import 'package:cocho/core/services/shared_prefs/secure_storage_service.dart'
     as _i360;
-import 'package:temp/core/services/shared_prefs/shared_prefs_service.dart'
+import 'package:cocho/core/services/shared_prefs/shared_prefs_service.dart'
     as _i657;
-import 'package:temp/core/services/shared_prefs/storage_facade.dart' as _i185;
-import 'package:temp/core/services/theme/theme_service.dart' as _i820;
-import 'package:temp/core/utils/network/logic/cubit/network_cubit.dart'
+import 'package:cocho/core/services/shared_prefs/storage_facade.dart' as _i185;
+import 'package:cocho/core/services/theme/theme_service.dart' as _i820;
+import 'package:cocho/core/utils/network/logic/cubit/network_cubit.dart'
     as _i125;
-import 'package:temp/core/utils/theme/data/base_theme_repository.dart' as _i968;
-import 'package:temp/core/utils/theme/data/theme_repository.dart' as _i941;
-import 'package:temp/core/utils/theme/logic/cubit/theme_cubit.dart' as _i512;
-import 'package:temp/modules/register/data/repository/register_repository.dart'
+import 'package:cocho/core/utils/theme/data/base_theme_repository.dart'
+    as _i968;
+import 'package:cocho/core/utils/theme/data/theme_repository.dart' as _i941;
+import 'package:cocho/core/utils/theme/logic/cubit/theme_cubit.dart' as _i512;
+import 'package:cocho/modules/register/data/repository/register_repository.dart'
     as _i93;
-import 'package:temp/modules/register/logic/cubit/register_cubit.dart' as _i50;
-import 'package:temp/modules/register/logic/usecase/register_usecase.dart'
+import 'package:cocho/modules/register/logic/cubit/register_cubit.dart' as _i50;
+import 'package:cocho/modules/register/logic/usecase/register_usecase.dart'
     as _i334;
 
 extension GetItInjectableX on _i174.GetIt {

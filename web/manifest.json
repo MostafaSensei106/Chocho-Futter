@@ -1,6 +1,6 @@
 {
-    "name": "temp",
-    "short_name": "temp",
+    "name": "cocho",
+    "short_name": "cocho",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

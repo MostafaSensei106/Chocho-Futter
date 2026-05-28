@@ -21,7 +21,7 @@ final class DioConnectivityInterceptor extends Interceptor {
         Duration(seconds: 8),
         Duration(seconds: 16),
       ],
-      retryEvaluator: (DioException error, int attempt) {
+      retryEvaluator: (DioException error, int atcochot) {
         return _isNetworkError(error);
       },
     );

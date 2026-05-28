@@ -3,11 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 class AnimatedNebula extends StatelessWidget {
   const AnimatedNebula({
-    super.key,
-    required this.color,
-    required this.width,
-    required this.height,
-    required this.duration,
+    required this.color, required this.width, required this.height, required this.duration, super.key,
     this.left,
     this.right,
     this.top,
@@ -25,7 +21,7 @@ class AnimatedNebula extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: color.withOpacity(0.22),
+        color: color.withValues(alpha: 0.22),
       ),
     );
 

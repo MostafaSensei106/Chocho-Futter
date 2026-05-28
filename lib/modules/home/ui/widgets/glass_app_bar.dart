@@ -14,7 +14,7 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Container(
             decoration: BoxDecoration(
               // frosted glass tint
-              color: const Color(0xFF0D0828).withOpacity(0.55),
+              color: const Color(0xFF0D0828).withValues(alpha: 0.55),
               border: const Border(
                 bottom: BorderSide(
                   color: Color(0x33C8B4FF), // subtle purple shimmer line

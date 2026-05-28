@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'butterfly_painter.dart';
+
 import 'animated_nebula.dart';
+import 'butterfly_painter.dart';
 
 class SkyCanvas extends StatelessWidget {
   const SkyCanvas({
-    super.key,
-    required this.clock,
-    required this.flapT,
-    required this.driftT,
-    required this.hueT,
-    required this.shootT,
+    required this.clock, required this.flapT, required this.driftT, required this.hueT, required this.shootT, super.key,
   });
 
   final double clock;
@@ -83,18 +79,19 @@ class SkyCanvas extends StatelessWidget {
             bottom: 14,
             left: 0,
             right: 0,
-            child: const Text(
-              'Papilio Nebula  ·  M3E-7',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFF5A4A8A),
-                fontSize: 10,
-                letterSpacing: 2.5,
-              ),
-            )
-                .animate()
-                .fadeIn(delay: 600.ms, duration: 800.ms)
-                .slideY(begin: 0.4, end: 0),
+            child:
+                const Text(
+                      'Papilio Nebula  ·  M3E-7',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF5A4A8A),
+                        fontSize: 10,
+                        letterSpacing: 2.5,
+                      ),
+                    )
+                    .animate()
+                    .fadeIn(delay: 600.ms, duration: 800.ms)
+                    .slideY(begin: 0.4, end: 0),
           ),
         ],
       ),

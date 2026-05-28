@@ -26,7 +26,7 @@ class ButterflyPainter extends CustomPainter {
   /// Cycling color from hue 0–360 based on hueT, offset per segment.
   Color _lineColor(double hueOffset, double opacity) {
     final hue = ((hueT * 360) + hueOffset) % 360;
-    return HSVColor.fromAHSV(1.0, hue, 0.6, 0.9).toColor().withOpacity(opacity);
+    return HSVColor.fromAHSV(1.0, hue, 0.6, 0.9).toColor().withValues(alpha: opacity);
   }
 
   void _drawStar(
@@ -43,16 +43,16 @@ class ButterflyPainter extends CustomPainter {
       pos,
       r + 2 + extraGlow,
       Paint()
-        ..color = color.withOpacity(op * 0.25)
+        ..color = color.withValues(alpha: op * 0.25)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3),
     );
     // Core
-    canvas.drawCircle(pos, r, Paint()..color = color.withOpacity(op));
+    canvas.drawCircle(pos, r, Paint()..color = color.withValues(alpha: op));
     // Bright center
     canvas.drawCircle(
       pos,
       r * 0.45,
-      Paint()..color = Colors.white.withOpacity(op * 0.9),
+      Paint()..color = Colors.white.withValues(alpha: op * 0.9),
     );
   }
 
@@ -82,19 +82,37 @@ class ButterflyPainter extends CustomPainter {
 
     // ── Background stars ──────────────────────────────────────────────────
     final bgStars = [
-      [0.07, 0.05], [0.19, 0.09], [0.31, 0.04], [0.45, 0.07],
-      [0.59, 0.03], [0.72, 0.08], [0.85, 0.05], [0.96, 0.10],
-      [0.13, 0.16], [0.27, 0.14], [0.91, 0.17], [0.97, 0.26],
-      [0.05, 0.32], [0.16, 0.38], [0.95, 0.41], [0.88, 0.50],
-      [0.06, 0.59], [0.96, 0.62], [0.12, 0.74], [0.94, 0.77],
-      [0.23, 0.85], [0.80, 0.87], [0.41, 0.90], [0.63, 0.91],
+      [0.07, 0.05],
+      [0.19, 0.09],
+      [0.31, 0.04],
+      [0.45, 0.07],
+      [0.59, 0.03],
+      [0.72, 0.08],
+      [0.85, 0.05],
+      [0.96, 0.10],
+      [0.13, 0.16],
+      [0.27, 0.14],
+      [0.91, 0.17],
+      [0.97, 0.26],
+      [0.05, 0.32],
+      [0.16, 0.38],
+      [0.95, 0.41],
+      [0.88, 0.50],
+      [0.06, 0.59],
+      [0.96, 0.62],
+      [0.12, 0.74],
+      [0.94, 0.77],
+      [0.23, 0.85],
+      [0.80, 0.87],
+      [0.41, 0.90],
+      [0.63, 0.91],
     ];
     for (var i = 0; i < bgStars.length; i++) {
       final op = _tw(i + 50, min: 0.15, max: 0.65);
       canvas.drawCircle(
         Offset(bgStars[i][0] * size.width, bgStars[i][1] * size.height),
         0.85,
-        Paint()..color = const Color(0xFFCCBBFF).withOpacity(op),
+        Paint()..color = const Color(0xFFCCBBFF).withValues(alpha: op),
       );
     }
 
@@ -104,14 +122,15 @@ class ButterflyPainter extends CustomPainter {
       final sy = 40.0 + shootT * 80;
       final tailLen = 60.0 * math.sin(shootT * math.pi); // fade tail
       final trailPaint = Paint()
-        ..shader = LinearGradient(
-          colors: [
-            Colors.transparent,
-            const Color(0xFFE0D0FF).withOpacity(0.7),
-          ],
-        ).createShader(
-          Rect.fromPoints(Offset(sx - tailLen, sy), Offset(sx, sy)),
-        );
+        ..shader =
+            LinearGradient(
+              colors: [
+                Colors.transparent,
+                const Color(0xFFE0D0FF).withValues(alpha: 0.7),
+              ],
+            ).createShader(
+              Rect.fromPoints(Offset(sx - tailLen, sy), Offset(sx, sy)),
+            );
       canvas.drawLine(
         Offset(sx - tailLen, sy - tailLen * 0.4),
         Offset(sx, sy),
@@ -122,7 +141,7 @@ class ButterflyPainter extends CustomPainter {
       canvas.drawCircle(
         Offset(sx, sy),
         1.5,
-        Paint()..color = Colors.white.withOpacity(math.sin(shootT * math.pi)),
+        Paint()..color = Colors.white.withValues(alpha: math.sin(shootT * math.pi)),
       );
     }
 
@@ -184,22 +203,60 @@ class ButterflyPainter extends CustomPainter {
     final spineColor = _lineColor(60, 0.35);
 
     // Upper-left
-    for (final pair in [[body, ul1], [ul1, ul2], [ul2, ul3], [ul3, ul4], [ul4, ulTip2], [ul3, ul5], [ul5, ul6], [ul6, ul7], [ul7, ul1]]) {
+    for (final pair in [
+      [body, ul1],
+      [ul1, ul2],
+      [ul2, ul3],
+      [ul3, ul4],
+      [ul4, ulTip2],
+      [ul3, ul5],
+      [ul5, ul6],
+      [ul6, ul7],
+      [ul7, ul1],
+    ]) {
       _drawLine(canvas, pair[0], pair[1], ulColor);
     }
 
     // Upper-right
-    for (final pair in [[body, ur1], [ur1, ur2], [ur2, ur3], [ur3, ur4], [ur4, urTip2], [ur3, ur5], [ur5, ur6], [ur6, ur7], [ur7, ur1]]) {
+    for (final pair in [
+      [body, ur1],
+      [ur1, ur2],
+      [ur2, ur3],
+      [ur3, ur4],
+      [ur4, urTip2],
+      [ur3, ur5],
+      [ur5, ur6],
+      [ur6, ur7],
+      [ur7, ur1],
+    ]) {
       _drawLine(canvas, pair[0], pair[1], urColor);
     }
 
     // Lower-left
-    for (final pair in [[bodyBot, ll1], [ll1, ll2], [ll2, ll3], [ll3, llTip], [ll3, ll4], [ll4, ll5], [ll5, ll6], [ll6, ll1]]) {
+    for (final pair in [
+      [bodyBot, ll1],
+      [ll1, ll2],
+      [ll2, ll3],
+      [ll3, llTip],
+      [ll3, ll4],
+      [ll4, ll5],
+      [ll5, ll6],
+      [ll6, ll1],
+    ]) {
       _drawLine(canvas, pair[0], pair[1], llColor);
     }
 
     // Lower-right
-    for (final pair in [[bodyBot, lr1], [lr1, lr2], [lr2, lr3], [lr3, lrTip], [lr3, lr4], [lr4, lr5], [lr5, lr6], [lr6, lr1]]) {
+    for (final pair in [
+      [bodyBot, lr1],
+      [lr1, lr2],
+      [lr2, lr3],
+      [lr3, lrTip],
+      [lr3, lr4],
+      [lr4, lr5],
+      [lr5, lr6],
+      [lr6, lr1],
+    ]) {
       _drawLine(canvas, pair[0], pair[1], lrColor);
     }
 
@@ -257,7 +314,7 @@ class ButterflyPainter extends CustomPainter {
       body,
       13,
       Paint()
-        ..color = const Color(0xFF8860FF).withOpacity(pulseOp)
+        ..color = const Color(0xFF8860FF).withValues(alpha: pulseOp)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.0,
     );
@@ -265,7 +322,7 @@ class ButterflyPainter extends CustomPainter {
       body,
       22,
       Paint()
-        ..color = const Color(0xFF6640CC).withOpacity(pulseOp * 0.6)
+        ..color = const Color(0xFF6640CC).withValues(alpha: pulseOp * 0.6)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 0.5,
     );

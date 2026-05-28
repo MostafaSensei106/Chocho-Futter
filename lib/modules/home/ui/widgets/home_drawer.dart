@@ -49,11 +49,11 @@ class HomeDrawer extends StatelessWidget {
   }
 
   ListTile _drawerItem(IconData icon, String label) => ListTile(
-        leading: Icon(icon, color: const Color(0xFF6A5A9A)),
-        title: Text(
-          label,
-          style: const TextStyle(color: Color(0xFFB0A0E0), letterSpacing: 0.5),
-        ),
-        onTap: () {},
-      );
+    leading: Icon(icon, color: const Color(0xFF6A5A9A)),
+    title: Text(
+      label,
+      style: const TextStyle(color: Color(0xFFB0A0E0), letterSpacing: 0.5),
+    ),
+    onTap: () {},
+  );
 }

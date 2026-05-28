@@ -4,9 +4,7 @@ import 'package:m3e_collection/m3e_collection.dart';
 
 class GlassBottomNav extends StatelessWidget {
   const GlassBottomNav({
-    super.key,
-    required this.selectedIndex,
-    required this.onDestinationSelected,
+    required this.selectedIndex, required this.onDestinationSelected, super.key,
   });
 
   final int selectedIndex;
