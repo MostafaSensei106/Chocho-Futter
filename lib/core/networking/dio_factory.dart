@@ -19,7 +19,7 @@ class DioFactory {
   static Dio? dio;
 
   static Future<Dio> getDio({
-    required LocalizationCubit localizationCubit,
+    // required LocalizationCubit localizationCubit,
     required BasePrefStorageService prefStorageService,
     required BaseNetworkInfo networkInfo,
     required NetworkCubit networkCubit,
@@ -32,7 +32,7 @@ class DioFactory {
         ..options.connectTimeout = AppConfig.dioTimeOut
         ..options.receiveTimeout = AppConfig.dioTimeOut;
       addDioInterceptors(
-        localizationCubit: localizationCubit,
+        //      localizationCubit: localizationCubit,
         prefStorageService: prefStorageService,
         networkInfo: networkInfo,
         networkCubit: networkCubit,
@@ -44,7 +44,7 @@ class DioFactory {
   }
 
   static void addDioInterceptors({
-    required LocalizationCubit localizationCubit,
+    //  required LocalizationCubit localizationCubit,
     required BasePrefStorageService prefStorageService,
     required BaseNetworkInfo networkInfo,
     required NetworkCubit networkCubit,
@@ -57,7 +57,7 @@ class DioFactory {
         responseHeader: true,
       ),
     );
-    dio?.interceptors.add(DioLocaleInterceptor(localizationCubit));
+    //  dio?.interceptors.add(DioLocaleInterceptor(localizationCubit));
     dio?.interceptors.add(DioTokenInterceptor(prefStorageService));
     dio?.interceptors.add(
       DioConnectivityInterceptor(

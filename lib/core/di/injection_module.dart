@@ -32,12 +32,12 @@ abstract class InjectionModule {
 
   @preResolve
   Future<Dio> dio(
-    LocalizationCubit localizationCubit,
+    //  LocalizationCubit localizationCubit,
     BasePrefStorageService prefStorageService,
     BaseNetworkInfo networkInfo,
     NetworkCubit networkCubit,
   ) => DioFactory.getDio(
-    localizationCubit: localizationCubit,
+    //  localizationCubit: localizationCubit,
     prefStorageService: prefStorageService,
     networkInfo: networkInfo,
     networkCubit: networkCubit,

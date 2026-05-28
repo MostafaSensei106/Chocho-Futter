@@ -29,7 +29,6 @@ import 'package:temp/core/services/app_info/interface/base_package_info_adapter.
     as _i469;
 import 'package:temp/core/services/app_info/package_info_plus_adapter.dart'
     as _i39;
-import 'package:temp/core/services/l10n/l10n_service.dart' as _i1049;
 import 'package:temp/core/services/share/base_share_service.dart' as _i567;
 import 'package:temp/core/services/share/share_plus_service.dart' as _i391;
 import 'package:temp/core/services/shared_prefs/base_pref_storage_service.dart'
@@ -40,14 +39,6 @@ import 'package:temp/core/services/shared_prefs/shared_prefs_service.dart'
     as _i657;
 import 'package:temp/core/services/shared_prefs/storage_facade.dart' as _i185;
 import 'package:temp/core/services/theme/theme_service.dart' as _i820;
-import 'package:temp/core/services/toast/base_toast_service.dart' as _i138;
-import 'package:temp/core/services/toast/toastification_service.dart' as _i444;
-import 'package:temp/core/utils/localization/data/base_localization_repository.dart'
-    as _i867;
-import 'package:temp/core/utils/localization/data/localization_repository.dart'
-    as _i93;
-import 'package:temp/core/utils/localization/logic/cubit/localization_cubit.dart'
-    as _i939;
 import 'package:temp/core/utils/network/logic/cubit/network_cubit.dart'
     as _i125;
 import 'package:temp/core/utils/theme/data/base_theme_repository.dart' as _i968;
@@ -75,14 +66,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i998.SharePlus>(() => injectionModule.sharePlus);
     gh.lazySingleton<_i895.Connectivity>(() => injectionModule.connectivity);
-    gh.lazySingleton<_i1049.L10nService>(() => _i1049.L10nService());
     gh.lazySingleton<_i820.ThemeService>(() => _i820.ThemeService());
-    gh.lazySingleton<_i138.BaseToastService>(
-      () => _i444.ToastificationService(
-        gh<_i1049.L10nService>(),
-        gh<_i820.ThemeService>(),
-      ),
-    );
     gh.lazySingleton<_i567.BaseShareService>(
       () => _i391.SharePlusService(gh<_i998.SharePlus>()),
     );
@@ -101,9 +85,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i125.NetworkCubit>(
       () => _i125.NetworkCubit(gh<_i373.BaseNetworkInfo>()),
     );
-    gh.lazySingleton<_i939.LocalizationCubit>(
-      () => _i939.LocalizationCubit(l10nService: gh<_i1049.L10nService>()),
-    );
     gh.lazySingleton<_i918.BaseAppInfoService>(
       () => _i1041.AppInfoService(gh<_i469.BasePackageInfoAdapter>()),
     );
@@ -113,39 +94,27 @@ extension GetItInjectableX on _i174.GetIt {
         secureStorageService: gh<_i360.SecureStorageService>(),
       ),
     );
+    gh.lazySingleton<_i968.BaseThemeRepository>(
+      () => _i941.ThemeRepository(gh<_i1014.BasePrefStorageService>()),
+    );
     await gh.factoryAsync<_i361.Dio>(
       () => injectionModule.dio(
-        gh<_i939.LocalizationCubit>(),
         gh<_i1014.BasePrefStorageService>(),
         gh<_i373.BaseNetworkInfo>(),
         gh<_i125.NetworkCubit>(),
       ),
       preResolve: true,
     );
-    gh.lazySingleton<_i968.BaseThemeRepository>(
-      () => _i941.ThemeRepository(gh<_i1014.BasePrefStorageService>()),
+    gh.lazySingleton<_i512.ThemeCubit>(
+      () => _i512.ThemeCubit(gh<_i968.BaseThemeRepository>()),
     );
     gh.lazySingleton<_i882.ApiService>(
       () => injectionModule.apiService(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i867.BaseLocalizationRepository>(
-      () => _i93.LocalizationRepository(
-        storage: gh<_i1014.BasePrefStorageService>(),
-        l10nService: gh<_i1049.L10nService>(),
-      ),
-    );
-    gh.lazySingleton<_i512.ThemeCubit>(
-      () => _i512.ThemeCubit(gh<_i968.BaseThemeRepository>()),
-    );
     return this;
   }
 
-  _i1049.L10nService get l10nService => get<_i1049.L10nService>();
-
   _i820.ThemeService get themeService => get<_i820.ThemeService>();
-
-  _i444.ToastificationService get toastificationService =>
-      get<_i444.ToastificationService>();
 
   _i391.SharePlusService get sharePlusService => get<_i391.SharePlusService>();
 
@@ -162,17 +131,11 @@ extension GetItInjectableX on _i174.GetIt {
 
   _i125.NetworkCubit get networkCubit => get<_i125.NetworkCubit>();
 
-  _i939.LocalizationCubit get localizationCubit =>
-      get<_i939.LocalizationCubit>();
-
   _i1041.AppInfoService get appInfoService => get<_i1041.AppInfoService>();
 
   _i185.StorageFacade get storageFacade => get<_i185.StorageFacade>();
 
   _i941.ThemeRepository get themeRepository => get<_i941.ThemeRepository>();
-
-  _i93.LocalizationRepository get localizationRepository =>
-      get<_i93.LocalizationRepository>();
 
   _i512.ThemeCubit get themeCubit => get<_i512.ThemeCubit>();
 }
