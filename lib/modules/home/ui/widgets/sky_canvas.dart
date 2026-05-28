@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import '../../../../core/utils/theme/app_theme.dart';
+import '../../../../core/widgets/background/animated_star_background_component.dart';
 
 import 'animated_nebula.dart';
 import 'butterfly_painter.dart';
 
 class SkyCanvas extends StatelessWidget {
   const SkyCanvas({
-    required this.clock, required this.flapT, required this.driftT, required this.hueT, required this.shootT, super.key,
+    required this.clock,
+    required this.flapT,
+    required this.driftT,
+    required this.hueT,
+    required this.shootT,
+    super.key,
   });
 
   final double clock;
@@ -17,49 +24,49 @@ class SkyCanvas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cosmosTheme = Theme.of(context).extension<CosmosThemeExtension>()!;
+
     return SizedBox(
       height: 360 + kToolbarHeight + 24, // extend behind glass appbar
       child: Stack(
         children: [
           // Background gradient
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: RadialGradient(
-                center: Alignment(0, -0.3),
+                center: const Alignment(0, -0.3),
                 radius: 0.9,
-                colors: [
-                  Color(0xFF14093E),
-                  Color(0xFF08051E),
-                  Color(0xFF06060F),
-                ],
+                colors: cosmosTheme.skyGradientColors,
               ),
             ),
           ),
 
+          const AnimatedStarBackgroundComponent(),
+
           // Animated nebula blobs
-          const AnimatedNebula(
-            color: Color(0xFF5530CC),
+          AnimatedNebula(
+            color: cosmosTheme.nebulaColors[0],
             width: 220,
             height: 140,
             left: -40,
             top: 30,
-            duration: Duration(seconds: 9),
+            duration: const Duration(seconds: 9),
           ),
-          const AnimatedNebula(
-            color: Color(0xFF2A1580),
+          AnimatedNebula(
+            color: cosmosTheme.nebulaColors[1],
             width: 160,
             height: 110,
             right: -20,
             top: 80,
-            duration: Duration(seconds: 11),
+            duration: const Duration(seconds: 11),
           ),
-          const AnimatedNebula(
-            color: Color(0xFF7040DD),
+          AnimatedNebula(
+            color: cosmosTheme.nebulaColors[2],
             width: 120,
             height: 85,
             right: 50,
             top: 5,
-            duration: Duration(seconds: 7),
+            duration: const Duration(seconds: 7),
           ),
 
           // Main animated painter
@@ -71,6 +78,7 @@ class SkyCanvas extends StatelessWidget {
               driftT: driftT,
               hueT: hueT,
               shootT: shootT,
+              cosmosTheme: cosmosTheme,
             ),
           ),
 
@@ -79,19 +87,18 @@ class SkyCanvas extends StatelessWidget {
             bottom: 14,
             left: 0,
             right: 0,
-            child:
-                const Text(
-                      'Papilio Nebula  ·  M3E-7',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF5A4A8A),
-                        fontSize: 10,
-                        letterSpacing: 2.5,
-                      ),
-                    )
-                    .animate()
-                    .fadeIn(delay: 600.ms, duration: 800.ms)
-                    .slideY(begin: 0.4, end: 0),
+            child: Text(
+              'Papilio Nebula  ·  M3E-7',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+                fontSize: 10,
+                letterSpacing: 2.5,
+              ),
+            )
+                .animate()
+                .fadeIn(delay: 600.ms, duration: 800.ms)
+                .slideY(begin: 0.4, end: 0),
           ),
         ],
       ),

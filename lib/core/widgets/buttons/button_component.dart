@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:m3e_collection/m3e_collection.dart';
 
-class AppButton extends StatelessWidget {
-  const AppButton({
-    super.key,
+class ButtonComponent extends StatelessWidget {
+  const ButtonComponent({
     required this.label,
     required this.onPressed,
+    super.key,
     this.style = ButtonM3EStyle.filled,
     this.size = ButtonM3ESize.md,
     this.isLoading = false,

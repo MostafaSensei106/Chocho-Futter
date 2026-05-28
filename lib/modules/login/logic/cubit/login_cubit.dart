@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/services/device/interface/base_device_id_service.dart';
@@ -5,8 +7,9 @@ import 'login_state.dart';
 
 @injectable
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(this._deviceIdService) : super(const LoginState.initial(LoginFormState())) {
-    _init();
+  LoginCubit(this._deviceIdService)
+    : super(const LoginState.initial(LoginFormState())) {
+    unawaited(_init());
   }
 
   final BaseDeviceIdService _deviceIdService;
@@ -25,9 +28,13 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login() async {
     if (!state.formState.isValid) return;
     emit(LoginState.loading(state.formState));
-    
-    // Simulate API call for now since we don't have the full repo setup yet
-    await Future.delayed(const Duration(seconds: 1));
-    emit(LoginState.failure(state.formState, error: 'Login not fully implemented yet'));
+
+    await Future<void>.delayed(const Duration(seconds: 1));
+    emit(
+      LoginState.failure(
+        state.formState,
+        error: 'Login not fully implemented yet',
+      ),
+    );
   }
 }

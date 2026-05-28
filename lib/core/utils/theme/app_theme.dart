@@ -2,12 +2,127 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../constants/app_config.dart';
 
+@immutable
+class CosmosThemeExtension extends ThemeExtension<CosmosThemeExtension> {
+  const CosmosThemeExtension({
+    required this.glassBackgroundColor,
+    required this.glassBorderColor,
+    required this.glassTextColor,
+    required this.skyGradientColors,
+    required this.nebulaColors,
+    required this.textFieldFillColor,
+    required this.textFieldBorderColor,
+    required this.textFieldFocusedBorderColor,
+  });
+
+  final Color glassBackgroundColor;
+  final Color glassBorderColor;
+  final Color glassTextColor;
+  final List<Color> skyGradientColors;
+  final List<Color> nebulaColors;
+  final Color textFieldFillColor;
+  final Color textFieldBorderColor;
+  final Color textFieldFocusedBorderColor;
+
+  @override
+  CosmosThemeExtension copyWith({
+    Color? glassBackgroundColor,
+    Color? glassBorderColor,
+    Color? glassTextColor,
+    List<Color>? skyGradientColors,
+    List<Color>? nebulaColors,
+    Color? textFieldFillColor,
+    Color? textFieldBorderColor,
+    Color? textFieldFocusedBorderColor,
+  }) {
+    return CosmosThemeExtension(
+      glassBackgroundColor: glassBackgroundColor ?? this.glassBackgroundColor,
+      glassBorderColor: glassBorderColor ?? this.glassBorderColor,
+      glassTextColor: glassTextColor ?? this.glassTextColor,
+      skyGradientColors: skyGradientColors ?? this.skyGradientColors,
+      nebulaColors: nebulaColors ?? this.nebulaColors,
+      textFieldFillColor: textFieldFillColor ?? this.textFieldFillColor,
+      textFieldBorderColor: textFieldBorderColor ?? this.textFieldBorderColor,
+      textFieldFocusedBorderColor:
+          textFieldFocusedBorderColor ?? this.textFieldFocusedBorderColor,
+    );
+  }
+
+  @override
+  CosmosThemeExtension lerp(
+    ThemeExtension<CosmosThemeExtension>? other,
+    double t,
+  ) {
+    final otherExtension = other as CosmosThemeExtension;
+    return CosmosThemeExtension(
+      glassBackgroundColor: Color.lerp(
+        glassBackgroundColor,
+        otherExtension.glassBackgroundColor,
+        t,
+      )!,
+      glassBorderColor: Color.lerp(
+        glassBorderColor,
+        otherExtension.glassBorderColor,
+        t,
+      )!,
+      glassTextColor: Color.lerp(
+        glassTextColor,
+        otherExtension.glassTextColor,
+        t,
+      )!,
+      skyGradientColors: List.generate(
+        skyGradientColors.length,
+        (i) => Color.lerp(
+          skyGradientColors[i],
+          otherExtension.skyGradientColors[i],
+          t,
+        )!,
+      ),
+      nebulaColors: List.generate(
+        nebulaColors.length,
+        (i) => Color.lerp(nebulaColors[i], otherExtension.nebulaColors[i], t)!,
+      ),
+      textFieldFillColor: Color.lerp(
+        textFieldFillColor,
+        otherExtension.textFieldFillColor,
+        t,
+      )!,
+      textFieldBorderColor: Color.lerp(
+        textFieldBorderColor,
+        otherExtension.textFieldBorderColor,
+        t,
+      )!,
+      textFieldFocusedBorderColor: Color.lerp(
+        textFieldFocusedBorderColor,
+        otherExtension.textFieldFocusedBorderColor,
+        t,
+      )!,
+    );
+  }
+}
+
 final class AppTheme {
+  static const _cosmosDark = CosmosThemeExtension(
+    glassBackgroundColor: Color(0xFF0D0828),
+    glassBorderColor: Color(0x33C8B4FF),
+    glassTextColor: Color(0xFFC8B4FF),
+    skyGradientColors: [
+      Color(0xFF14093E),
+      Color(0xFF08051E),
+      Color(0xFF06060F),
+    ],
+    nebulaColors: [Color(0xFF5530CC), Color(0xFF2A1580), Color(0xFF7040DD)],
+    textFieldFillColor: Color(0xFF0E0B28),
+    textFieldBorderColor: Color(0xFF2A1F5A),
+    textFieldFocusedBorderColor: Color(0xFFC8B4FF),
+  );
+
   static ThemeData light = ThemeData(
     useMaterial3: true,
-
     fontFamily: 'Hadidi',
-
+    extensions: const [
+      _cosmosDark,
+    ], // Defaulting to cosmos dark for now as it's the app style
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: Color(0xff000454),
@@ -56,19 +171,16 @@ final class AppTheme {
       surfaceContainerHigh: Color(0xffeae7ee),
       surfaceContainerHighest: Color(0xffe4e1e9),
     ),
-
     appBarTheme: const AppBarTheme(
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: true,
     ),
-
     dialogTheme: DialogThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppConfig.outBorderRadius),
       ),
     ),
-
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -77,7 +189,6 @@ final class AppTheme {
         ),
       ),
     ),
-
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -88,9 +199,8 @@ final class AppTheme {
 
   static ThemeData dark = ThemeData(
     useMaterial3: true,
-
     fontFamily: 'Hadidi',
-
+    extensions: const [_cosmosDark],
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Color(0xffbdc2ff),
@@ -139,19 +249,16 @@ final class AppTheme {
       surfaceContainerHigh: Color(0xff2a292f),
       surfaceContainerHighest: Color(0xff34343a),
     ),
-
     appBarTheme: const AppBarTheme(
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: true,
     ),
-
     dialogTheme: DialogThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppConfig.outBorderRadius),
       ),
     ),
-
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -160,7 +267,6 @@ final class AppTheme {
         ),
       ),
     ),
-
     pageTransitionsTheme: const PageTransitionsTheme(
       builders: {
         TargetPlatform.android: CupertinoPageTransitionsBuilder(),

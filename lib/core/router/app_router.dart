@@ -41,7 +41,7 @@ final class AppRouter {
   static const String about = '/about';
 
   static final router = GoRouter(
-    initialLocation: register,
+    initialLocation: login,
     debugLogDiagnostics: true,
     routes: [...$appRoutes],
   );

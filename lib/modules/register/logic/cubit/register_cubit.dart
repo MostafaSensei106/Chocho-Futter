@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,7 +19,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     required this._prefStorageService,
     required this._deviceIdService,
   }) : super(const RegisterState.initial(RegisterFormState())) {
-    _init();
+    unawaited(_init());
   }
 
   final RegisterUsecase _registerUsecase;

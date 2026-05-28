@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../utils/theme/app_theme.dart';
 
-class AppTextField extends StatelessWidget {
-  const AppTextField({
-    super.key,
+class TextFieldComponent extends StatelessWidget {
+  const TextFieldComponent({
     required this.label,
+    super.key,
     this.prefixIcon,
     this.suffixIcon,
     this.obscureText = false,
@@ -30,8 +31,9 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cosmosTheme = Theme.of(context).extension<CosmosThemeExtension>()!;
+
     return TextFormField(
-      key: key,
       controller: controller,
       initialValue: initialValue,
       onChanged: onChanged,
@@ -39,33 +41,33 @@ class AppTextField extends StatelessWidget {
       enabled: enabled,
       readOnly: readOnly,
       keyboardType: keyboardType,
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
       onTapOutside: (event) => FocusScope.of(context).unfocus(),
       decoration: InputDecoration(
         labelText: label,
         errorText: errorText,
-        labelStyle: const TextStyle(color: Color(0xFF6A5A9A)),
+        labelStyle: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.6)),
         prefixIcon: prefixIcon != null
-            ? Icon(prefixIcon, color: const Color(0xFF6A5A9A))
+            ? Icon(prefixIcon, color: Theme.of(context).colorScheme.onSurfaceVariant)
             : null,
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: const Color(0xFF0E0B28).withValues(alpha: 0.5),
+        fillColor: cosmosTheme.textFieldFillColor.withValues(alpha: 0.5),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Color(0xFF2A1F5A), width: 0.8),
+          borderSide: BorderSide(color: cosmosTheme.textFieldBorderColor, width: 0.8),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Color(0xFFC8B4FF), width: 1.2),
+          borderSide: BorderSide(color: cosmosTheme.textFieldFocusedBorderColor, width: 1.2),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Color(0xFF1A1A2A), width: 0.8),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2), width: 0.8),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: Colors.redAccent, width: 0.8),
+          borderSide: BorderSide(color: Theme.of(context).colorScheme.error, width: 0.8),
         ),
       ),
     );

@@ -1,10 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../utils/theme/app_theme.dart';
 
-class AppGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const AppGlassAppBar({
-    super.key,
+class GlassAppBarComponent extends StatelessWidget
+    implements PreferredSizeWidget {
+  const GlassAppBarComponent({
     required this.title,
+    super.key,
     this.leading,
     this.actions,
     this.centerTitle = true,
@@ -17,15 +19,28 @@ class AppGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cosmosTheme =
+        Theme.of(context).extension<CosmosThemeExtension>() ??
+        const CosmosThemeExtension(
+          glassBackgroundColor: Colors.white,
+          glassBorderColor: Colors.white54,
+          glassTextColor: Colors.white,
+          skyGradientColors: [],
+          nebulaColors: [],
+          textFieldFillColor: Colors.white,
+          textFieldBorderColor: Colors.white,
+          textFieldFocusedBorderColor: Colors.white,
+        );
+
     return ClipRect(
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
         child: Container(
           decoration: BoxDecoration(
-            color: const Color(0xFF0D0828).withValues(alpha: 0.55),
-            border: const Border(
+            color: cosmosTheme.glassBackgroundColor.withValues(alpha: 0.55),
+            border: Border(
               bottom: BorderSide(
-                color: Color(0x33C8B4FF),
+                color: cosmosTheme.glassBorderColor,
                 width: 0.6,
               ),
             ),
@@ -36,11 +51,11 @@ class AppGlassAppBar extends StatelessWidget implements PreferredSizeWidget {
             scrolledUnderElevation: 0,
             title: Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 letterSpacing: 6,
                 fontSize: 15,
                 fontWeight: FontWeight.w300,
-                color: Color(0xFFC8B4FF),
+                color: cosmosTheme.glassTextColor,
               ),
             ),
             centerTitle: centerTitle,
