@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/constants/pref_keys.dart';
 import '../../../../core/services/device/interface/base_device_id_service.dart';
 import '../../../../core/services/shared_prefs/base_pref_storage_service.dart';
 import '../../../../core/utils/result/result.dart';
+import '../../../../core/utils/validator/name/name_validator.dart';
 import '../../data/models/register_request_body.dart';
 import '../../data/models/register_response_body.dart';
 import '../usecase/register_usecase.dart';
@@ -28,8 +30,12 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   Future<void> _init() async {
     final deviceId = await _deviceIdService.getDeviceId();
-    final isValid = state.formState.username.trim().isNotEmpty && deviceId.trim().isNotEmpty;
-    emit(RegisterState.initial(state.formState.copyWith(deviceId: deviceId, isValid: isValid)));
+    final isValid = state.formState.isValid;
+    emit(
+      RegisterState.initial(
+        state.formState.copyWith(deviceId: deviceId, isValid: isValid),
+      ),
+    );
   }
 
   Future<void> register() async {
@@ -39,7 +45,7 @@ class RegisterCubit extends Cubit<RegisterState> {
 
     final body = RegisterRequestBody(
       deviceID: form.deviceId,
-      username: form.username,
+      username: form.username.value,
     );
 
     final response = await _registerUsecase.call(body);
@@ -67,13 +73,15 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   void onRememberMeChanged(bool value) {
-    final form = state.formState;
-    emit(RegisterState.initial(form.copyWith(rememberMe: value)));
+    emit(RegisterState.initial(state.formState.copyWith(rememberMe: value)));
   }
 
   void onUsernameChanged(String value) {
-    final form = state.formState;
-    final isValid = value.trim().isNotEmpty && form.deviceId.trim().isNotEmpty;
-    emit(RegisterState.initial(form.copyWith(username: value, isValid: isValid)));
+    final username = NameValidator.dirty(value);
+    final formState = state.formState.copyWith(
+      username: username,
+      isValid: Formz.validate([state.formState.username, username]),
+    );
+    emit(RegisterState.initial(formState));
   }
 }

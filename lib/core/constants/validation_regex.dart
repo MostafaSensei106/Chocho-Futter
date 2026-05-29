@@ -41,7 +41,7 @@ final class ValidationRegex {
 
   static final RegExp max20CharsRegExp = RegExp(r'^.{0,20}$');
 
-  static final RegExp min50CharsRegExp = RegExp(r'^.{50,}$');
+  static final RegExp max50CharsRegExp = RegExp(r'^.{0,50}$');
 
   static final RegExp min8CharsRegExp = RegExp(r'^.{8,}$');
 

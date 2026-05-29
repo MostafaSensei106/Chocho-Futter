@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/constants/types/type_def.dart';
-import '../../../../core/networking/api_executor/api_executor.dart';
+import '../../../../core/networking/api_executer/api_executer.dart';
 import '../../../../core/networking/api_service/api_service.dart';
 import '../models/register_request_body.dart';
 import '../models/register_response_body.dart';
@@ -18,5 +18,5 @@ final class RegisterRepositoryImpl implements RegisterRepository {
 
   @override
   Future<ApiResult<RegisterResponseBody>> register(RegisterRequestBody body) =>
-      ApiExecutor.execute(action: () => _api.register(body));
+      ApiExecuter.execute(action: () => _api.register(body));
 }

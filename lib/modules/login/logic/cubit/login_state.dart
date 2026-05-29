@@ -6,8 +6,14 @@ part 'login_state.freezed.dart';
 sealed class LoginState<T> with _$LoginState<T> {
   const factory LoginState.initial(LoginFormState formState) = _Initial;
   const factory LoginState.loading(LoginFormState formState) = Loading;
-  const factory LoginState.success(LoginFormState formState, {required T data}) = Success<T>;
-  const factory LoginState.failure(LoginFormState formState, {required String error}) = Failure;
+  const factory LoginState.success(
+    LoginFormState formState, {
+    required T data,
+  }) = Success<T>;
+  const factory LoginState.failure(
+    LoginFormState formState, {
+    required String error,
+  }) = Failure;
 }
 
 @freezed
@@ -16,6 +22,7 @@ sealed class LoginFormState with _$LoginFormState {
     @Default('') String username,
     @Default('') String deviceId,
     @Default(false) bool isValid,
+    @Default(false) bool rememberMe,
   }) = _LoginFormState;
 }
 

@@ -530,7 +530,7 @@ $RegisterFormStateCopyWith<$Res> get formState {
 /// @nodoc
 mixin _$RegisterFormState {
 
- String get deviceId; String get username; bool get isValid; bool get rememberMe;
+ String get deviceId; NameValidator get username; bool get isValid; bool get rememberMe;
 /// Create a copy of RegisterFormState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -561,7 +561,7 @@ abstract mixin class $RegisterFormStateCopyWith<$Res>  {
   factory $RegisterFormStateCopyWith(RegisterFormState value, $Res Function(RegisterFormState) _then) = _$RegisterFormStateCopyWithImpl;
 @useResult
 $Res call({
- String deviceId, String username, bool isValid, bool rememberMe
+ String deviceId, NameValidator username, bool isValid, bool rememberMe
 });
 
 
@@ -582,7 +582,7 @@ class _$RegisterFormStateCopyWithImpl<$Res>
   return _then(_self.copyWith(
 deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
-as String,isValid: null == isValid ? _self.isValid : isValid // ignore: cast_nullable_to_non_nullable
+as NameValidator,isValid: null == isValid ? _self.isValid : isValid // ignore: cast_nullable_to_non_nullable
 as bool,rememberMe: null == rememberMe ? _self.rememberMe : rememberMe // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -666,7 +666,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String deviceId,  String username,  bool isValid,  bool rememberMe)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String deviceId,  NameValidator username,  bool isValid,  bool rememberMe)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _RegisterFormState() when $default != null:
 return $default(_that.deviceId,_that.username,_that.isValid,_that.rememberMe);case _:
@@ -687,7 +687,7 @@ return $default(_that.deviceId,_that.username,_that.isValid,_that.rememberMe);ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String deviceId,  String username,  bool isValid,  bool rememberMe)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String deviceId,  NameValidator username,  bool isValid,  bool rememberMe)  $default,) {final _that = this;
 switch (_that) {
 case _RegisterFormState():
 return $default(_that.deviceId,_that.username,_that.isValid,_that.rememberMe);}
@@ -704,7 +704,7 @@ return $default(_that.deviceId,_that.username,_that.isValid,_that.rememberMe);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String deviceId,  String username,  bool isValid,  bool rememberMe)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String deviceId,  NameValidator username,  bool isValid,  bool rememberMe)?  $default,) {final _that = this;
 switch (_that) {
 case _RegisterFormState() when $default != null:
 return $default(_that.deviceId,_that.username,_that.isValid,_that.rememberMe);case _:
@@ -719,11 +719,11 @@ return $default(_that.deviceId,_that.username,_that.isValid,_that.rememberMe);ca
 
 
 class _RegisterFormState implements RegisterFormState {
-  const _RegisterFormState({this.deviceId = '', this.username = '', this.isValid = false, this.rememberMe = false});
+  const _RegisterFormState({this.deviceId = '', this.username = const NameValidator.pure(), this.isValid = false, this.rememberMe = false});
   
 
 @override@JsonKey() final  String deviceId;
-@override@JsonKey() final  String username;
+@override@JsonKey() final  NameValidator username;
 @override@JsonKey() final  bool isValid;
 @override@JsonKey() final  bool rememberMe;
 
@@ -757,7 +757,7 @@ abstract mixin class _$RegisterFormStateCopyWith<$Res> implements $RegisterFormS
   factory _$RegisterFormStateCopyWith(_RegisterFormState value, $Res Function(_RegisterFormState) _then) = __$RegisterFormStateCopyWithImpl;
 @override @useResult
 $Res call({
- String deviceId, String username, bool isValid, bool rememberMe
+ String deviceId, NameValidator username, bool isValid, bool rememberMe
 });
 
 
@@ -778,7 +778,7 @@ class __$RegisterFormStateCopyWithImpl<$Res>
   return _then(_RegisterFormState(
 deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
-as String,isValid: null == isValid ? _self.isValid : isValid // ignore: cast_nullable_to_non_nullable
+as NameValidator,isValid: null == isValid ? _self.isValid : isValid // ignore: cast_nullable_to_non_nullable
 as bool,rememberMe: null == rememberMe ? _self.rememberMe : rememberMe // ignore: cast_nullable_to_non_nullable
 as bool,
   ));

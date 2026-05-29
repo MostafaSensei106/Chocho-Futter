@@ -530,7 +530,7 @@ $LoginFormStateCopyWith<$Res> get formState {
 /// @nodoc
 mixin _$LoginFormState {
 
- String get username; String get deviceId; bool get isValid;
+ String get username; String get deviceId; bool get isValid; bool get rememberMe;
 /// Create a copy of LoginFormState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -541,16 +541,16 @@ $LoginFormStateCopyWith<LoginFormState> get copyWith => _$LoginFormStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginFormState&&(identical(other.username, username) || other.username == username)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.isValid, isValid) || other.isValid == isValid));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoginFormState&&(identical(other.username, username) || other.username == username)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.isValid, isValid) || other.isValid == isValid)&&(identical(other.rememberMe, rememberMe) || other.rememberMe == rememberMe));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,username,deviceId,isValid);
+int get hashCode => Object.hash(runtimeType,username,deviceId,isValid,rememberMe);
 
 @override
 String toString() {
-  return 'LoginFormState(username: $username, deviceId: $deviceId, isValid: $isValid)';
+  return 'LoginFormState(username: $username, deviceId: $deviceId, isValid: $isValid, rememberMe: $rememberMe)';
 }
 
 
@@ -561,7 +561,7 @@ abstract mixin class $LoginFormStateCopyWith<$Res>  {
   factory $LoginFormStateCopyWith(LoginFormState value, $Res Function(LoginFormState) _then) = _$LoginFormStateCopyWithImpl;
 @useResult
 $Res call({
- String username, String deviceId, bool isValid
+ String username, String deviceId, bool isValid, bool rememberMe
 });
 
 
@@ -578,11 +578,12 @@ class _$LoginFormStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginFormState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? deviceId = null,Object? isValid = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? username = null,Object? deviceId = null,Object? isValid = null,Object? rememberMe = null,}) {
   return _then(_self.copyWith(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,isValid: null == isValid ? _self.isValid : isValid // ignore: cast_nullable_to_non_nullable
+as bool,rememberMe: null == rememberMe ? _self.rememberMe : rememberMe // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -665,10 +666,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String deviceId,  bool isValid)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String username,  String deviceId,  bool isValid,  bool rememberMe)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LoginFormState() when $default != null:
-return $default(_that.username,_that.deviceId,_that.isValid);case _:
+return $default(_that.username,_that.deviceId,_that.isValid,_that.rememberMe);case _:
   return orElse();
 
 }
@@ -686,10 +687,10 @@ return $default(_that.username,_that.deviceId,_that.isValid);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String deviceId,  bool isValid)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String username,  String deviceId,  bool isValid,  bool rememberMe)  $default,) {final _that = this;
 switch (_that) {
 case _LoginFormState():
-return $default(_that.username,_that.deviceId,_that.isValid);}
+return $default(_that.username,_that.deviceId,_that.isValid,_that.rememberMe);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -703,10 +704,10 @@ return $default(_that.username,_that.deviceId,_that.isValid);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String deviceId,  bool isValid)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String username,  String deviceId,  bool isValid,  bool rememberMe)?  $default,) {final _that = this;
 switch (_that) {
 case _LoginFormState() when $default != null:
-return $default(_that.username,_that.deviceId,_that.isValid);case _:
+return $default(_that.username,_that.deviceId,_that.isValid,_that.rememberMe);case _:
   return null;
 
 }
@@ -718,12 +719,13 @@ return $default(_that.username,_that.deviceId,_that.isValid);case _:
 
 
 class _LoginFormState implements LoginFormState {
-  const _LoginFormState({this.username = '', this.deviceId = '', this.isValid = false});
+  const _LoginFormState({this.username = '', this.deviceId = '', this.isValid = false, this.rememberMe = false});
   
 
 @override@JsonKey() final  String username;
 @override@JsonKey() final  String deviceId;
 @override@JsonKey() final  bool isValid;
+@override@JsonKey() final  bool rememberMe;
 
 /// Create a copy of LoginFormState
 /// with the given fields replaced by the non-null parameter values.
@@ -735,16 +737,16 @@ _$LoginFormStateCopyWith<_LoginFormState> get copyWith => __$LoginFormStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginFormState&&(identical(other.username, username) || other.username == username)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.isValid, isValid) || other.isValid == isValid));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LoginFormState&&(identical(other.username, username) || other.username == username)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.isValid, isValid) || other.isValid == isValid)&&(identical(other.rememberMe, rememberMe) || other.rememberMe == rememberMe));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,username,deviceId,isValid);
+int get hashCode => Object.hash(runtimeType,username,deviceId,isValid,rememberMe);
 
 @override
 String toString() {
-  return 'LoginFormState(username: $username, deviceId: $deviceId, isValid: $isValid)';
+  return 'LoginFormState(username: $username, deviceId: $deviceId, isValid: $isValid, rememberMe: $rememberMe)';
 }
 
 
@@ -755,7 +757,7 @@ abstract mixin class _$LoginFormStateCopyWith<$Res> implements $LoginFormStateCo
   factory _$LoginFormStateCopyWith(_LoginFormState value, $Res Function(_LoginFormState) _then) = __$LoginFormStateCopyWithImpl;
 @override @useResult
 $Res call({
- String username, String deviceId, bool isValid
+ String username, String deviceId, bool isValid, bool rememberMe
 });
 
 
@@ -772,11 +774,12 @@ class __$LoginFormStateCopyWithImpl<$Res>
 
 /// Create a copy of LoginFormState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? deviceId = null,Object? isValid = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? username = null,Object? deviceId = null,Object? isValid = null,Object? rememberMe = null,}) {
   return _then(_LoginFormState(
 username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,isValid: null == isValid ? _self.isValid : isValid // ignore: cast_nullable_to_non_nullable
+as bool,rememberMe: null == rememberMe ? _self.rememberMe : rememberMe // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

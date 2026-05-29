@@ -18,7 +18,11 @@ class InfoCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(Icons.star_border, color: Theme.of(context).colorScheme.primary, size: 28)
+          Icon(
+                Icons.star_border,
+                color: Theme.of(context).colorScheme.primary,
+                size: 28,
+              )
               .animate(onPlay: (c) => c.repeat(reverse: true))
               .scaleXY(
                 begin: 1.0,
@@ -33,19 +37,27 @@ class InfoCard extends StatelessWidget {
               children: [
                 Text(
                   'Papilio Nebula visible tonight',
-                  style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 14),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontSize: 14,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   'Best viewing: 22:30 – 02:00',
-                  style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontSize: 12,
+                  ),
                 ),
               ],
             ),
           ),
           Icon(
             Icons.arrow_forward_ios,
-            color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+            color: Theme.of(
+              context,
+            ).colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
             size: 14,
           ),
         ],

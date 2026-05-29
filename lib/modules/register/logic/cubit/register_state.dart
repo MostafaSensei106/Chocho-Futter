@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../core/utils/validator/name/name_validator.dart';
+
 part 'register_state.freezed.dart';
 
 @freezed
@@ -20,7 +22,7 @@ sealed class RegisterState<T> with _$RegisterState<T> {
 sealed class RegisterFormState with _$RegisterFormState {
   const factory RegisterFormState({
     @Default('') String deviceId,
-    @Default('') String username,
+    @Default(NameValidator.pure()) NameValidator username,
     @Default(false) bool isValid,
     @Default(false) bool rememberMe,
   }) = _RegisterFormState;

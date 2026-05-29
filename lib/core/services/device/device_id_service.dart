@@ -15,18 +15,20 @@ final class DeviceIdService implements BaseDeviceIdService {
   @override
   Future<String> getDeviceId() async {
     // Try to get existing ID from secure storage
-    final storedId = await _secureStorage.getData<String>(key: PrefKeys.deviceId);
-    
+    final storedId = await _secureStorage.getData<String>(
+      key: PrefKeys.deviceId,
+    );
+
     if (storedId != null && storedId.isNotEmpty) {
       return storedId;
     }
 
     // Generate new unique ID if none exists
     final newId = _uuid.v4();
-    
+
     // Store it securely for future use
     await _secureStorage.setData<String>(key: PrefKeys.deviceId, value: newId);
-    
+
     return newId;
   }
 }

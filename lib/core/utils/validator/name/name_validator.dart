@@ -25,7 +25,7 @@ final class NameValidator extends FormzInput<String, NameValidatorError> {
     return ValidationPipeline<NameValidatorError>(value)
         .required(NameValidatorError.empty)
         .matches(ValidationRegex.min3CharsRegExp, NameValidatorError.tooShort)
-        .matches(ValidationRegex.min50CharsRegExp, NameValidatorError.tooLong)
+        .matches(ValidationRegex.max50CharsRegExp, NameValidatorError.tooLong)
         .matches(ValidationRegex.nameRegExp, NameValidatorError.invalid)
         .notMatches(
           ValidationRegex.emojiRegExp,

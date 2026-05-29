@@ -29,7 +29,6 @@ class GlassBottomNav extends StatelessWidget {
           ),
           child: NavigationBarM3E(
             selectedIndex: selectedIndex,
-            // fully transparent so the blur shows through
             backgroundColor: cosmosTheme.glassBackgroundColor.withValues(
               alpha: 0.3,
             ),

@@ -61,9 +61,9 @@ class LoginRoute extends CupertinoRouteData with $LoginRoute {
 
   @override
   Widget build(BuildContext context, GoRouterState state) => BlocProvider(
-        create: (context) => getIt<LoginCubit>(),
-        child: const LoginPage(),
-      );
+    create: (context) => getIt<LoginCubit>(),
+    child: const LoginPage(),
+  );
 }
 
 @TypedGoRoute<RegisterRoute>(path: AppRouter.register)

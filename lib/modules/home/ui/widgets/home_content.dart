@@ -15,47 +15,47 @@ class HomeContent extends StatelessWidget {
           Text(
             'N I G H T  S K Y  E X P L O R E R',
             style: TextStyle(
-              color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.7),
+              color: Theme.of(
+                context,
+              ).colorScheme.primary.withValues(alpha: 0.7),
               fontSize: 10,
               letterSpacing: 2.5,
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 600.ms),
           const SizedBox(height: 10),
           Text(
-            'Every star\ntells a story',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
-              fontSize: 28,
-              fontWeight: FontWeight.w300,
-              height: 1.3,
-              letterSpacing: 0.5,
-            ),
-          )
+                'Every star\ntells a story',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w300,
+                  height: 1.3,
+                  letterSpacing: 0.5,
+                ),
+              )
               .animate()
               .fadeIn(delay: 400.ms, duration: 700.ms)
               .slideY(begin: 0.3, end: 0, curve: Curves.easeOutCubic),
           const SizedBox(height: 24),
           Row(
-            children: [
-              Expanded(
-                child: ButtonM3E(
-                  onPressed: () {},
-                  size: ButtonM3ESize.lg,
-                  label: const Text('Explore Sky'),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: ButtonM3E(
-                  onPressed: () {},
-                  size: ButtonM3ESize.lg,
-                  style: ButtonM3EStyle.outlined,
-                  label: const Text('My Maps'),
-                ),
-              ),
-            ],
-          )
+                children: [
+                  Expanded(
+                    child: ButtonM3E(
+                      onPressed: () {},
+                      label: const Text('Explore Sky'),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: ButtonM3E(
+                      onPressed: () {},
+                      style: ButtonM3EStyle.tonal,
+                      label: const Text('My Maps'),
+                    ),
+                  ),
+                ],
+              )
               .animate()
               .fadeIn(delay: 700.ms, duration: 500.ms)
               .slideY(begin: 0.2, end: 0),

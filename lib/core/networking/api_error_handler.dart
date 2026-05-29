@@ -21,7 +21,6 @@ final class APIErrorHandler extends ServerFailure implements Exception {
     if (error is! DioException) {
       return ApiErrorModel(
         success: false,
-        message: HttpMessages.unknownError,
         errors: ErrorDetail(
           code: 'unknown',
           message: HttpMessages.unknownError,
@@ -37,9 +36,7 @@ final class APIErrorHandler extends ServerFailure implements Exception {
       case DioExceptionType.connectionError:
         return ApiErrorModel(
           success: false,
-          message:
-              'No internet connection.\n'
-              'Please check your network and try again.',
+
           errors: ErrorDetail(
             code: 'connection_error',
             message: 'No internet connection.',
@@ -50,7 +47,6 @@ final class APIErrorHandler extends ServerFailure implements Exception {
       case DioExceptionType.receiveTimeout:
         return ApiErrorModel(
           success: false,
-          message: HttpMessages.gatewayTimeout,
           errors: ErrorDetail(
             code: 'timeout',
             message: HttpMessages.gatewayTimeout,
@@ -60,7 +56,6 @@ final class APIErrorHandler extends ServerFailure implements Exception {
       case DioExceptionType.sendTimeout:
         return ApiErrorModel(
           success: false,
-          message: 'Network send timeout. Please try again.',
           errors: ErrorDetail(
             code: 'send_timeout',
             message: 'Network send timeout.',
@@ -70,7 +65,6 @@ final class APIErrorHandler extends ServerFailure implements Exception {
       case DioExceptionType.cancel:
         return ApiErrorModel(
           success: false,
-          message: 'Request was cancelled.',
           errors: ErrorDetail(
             code: 'request_cancelled',
             message: 'Request was cancelled.',
@@ -85,7 +79,6 @@ final class APIErrorHandler extends ServerFailure implements Exception {
         }
         return ApiErrorModel(
           success: false,
-          message: HttpMessages.badRequest,
           errors: ErrorDetail(
             code: 'bad_response',
             message: HttpMessages.badRequest,
@@ -97,17 +90,15 @@ final class APIErrorHandler extends ServerFailure implements Exception {
             error.error.toString().contains('SocketException')) {
           return ApiErrorModel(
             success: false,
-            message:
-                'Server unreachable. Please verify your internet connection.',
             errors: ErrorDetail(
               code: 'socket_exception',
-              message: 'Server unreachable.',
+              message:
+                  'Server unreachable. Please verify your internet connection.',
             ),
           );
         }
         return ApiErrorModel(
           success: false,
-          message: HttpMessages.unknownError,
           errors: ErrorDetail(
             code: 'unknown',
             message: HttpMessages.unknownError,
@@ -117,7 +108,6 @@ final class APIErrorHandler extends ServerFailure implements Exception {
       default:
         return ApiErrorModel(
           success: false,
-          message: HttpMessages.internalServerError,
           errors: ErrorDetail(
             code: 'server_error',
             message: HttpMessages.internalServerError,

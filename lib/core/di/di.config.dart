@@ -43,7 +43,14 @@ import 'package:cocho/core/utils/theme/data/base_theme_repository.dart'
     as _i770;
 import 'package:cocho/core/utils/theme/data/theme_repository.dart' as _i976;
 import 'package:cocho/core/utils/theme/logic/cubit/theme_cubit.dart' as _i851;
+import 'package:cocho/modules/login/data/repository/login_repository.dart'
+    as _i350;
 import 'package:cocho/modules/login/logic/cubit/login_cubit.dart' as _i115;
+import 'package:cocho/modules/login/logic/usecase/lgoin_usecase.dart' as _i383;
+import 'package:cocho/modules/login/logic/usecase/login_with_apple_usecase.dart'
+    as _i987;
+import 'package:cocho/modules/login/logic/usecase/login_with_google_usecase.dart'
+    as _i328;
 import 'package:cocho/modules/register/data/repository/register_repository.dart'
     as _i854;
 import 'package:cocho/modules/register/logic/cubit/register_cubit.dart'
@@ -126,9 +133,6 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
-    gh.factory<_i115.LoginCubit>(
-      () => _i115.LoginCubit(gh<_i37.BaseDeviceIdService>()),
-    );
     gh.lazySingleton<_i851.ThemeCubit>(
       () => _i851.ThemeCubit(gh<_i770.BaseThemeRepository>()),
     );
@@ -138,14 +142,34 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i854.RegisterRepository>(
       () => _i854.RegisterRepositoryImpl(api: gh<_i923.ApiService>()),
     );
+    gh.lazySingleton<_i350.LoginRepository>(
+      () => _i350.LoginRepositoryImpl(gh<_i923.ApiService>()),
+    );
     gh.factory<_i56.RegisterUsecase>(
       () => _i56.RegisterUsecase(repo: gh<_i854.RegisterRepository>()),
+    );
+    gh.lazySingleton<_i383.LgoinUsecase>(
+      () => _i383.LgoinUsecase(gh<_i350.LoginRepository>()),
+    );
+    gh.lazySingleton<_i987.LoginWithAppleUsecase>(
+      () => _i987.LoginWithAppleUsecase(gh<_i350.LoginRepository>()),
+    );
+    gh.lazySingleton<_i328.LoginWithGoogleUsecase>(
+      () => _i328.LoginWithGoogleUsecase(gh<_i350.LoginRepository>()),
     );
     gh.factory<_i333.RegisterCubit>(
       () => _i333.RegisterCubit(
         registerUsecase: gh<_i56.RegisterUsecase>(),
         prefStorageService: gh<_i499.BasePrefStorageService>(),
         deviceIdService: gh<_i37.BaseDeviceIdService>(),
+      ),
+    );
+    gh.factory<_i115.LoginCubit>(
+      () => _i115.LoginCubit(
+        gh<_i37.BaseDeviceIdService>(),
+        gh<_i328.LoginWithGoogleUsecase>(),
+        gh<_i987.LoginWithAppleUsecase>(),
+        gh<_i383.LgoinUsecase>(),
       ),
     );
     return this;
@@ -181,16 +205,27 @@ extension GetItInjectableX on _i174.GetIt {
 
   _i976.ThemeRepository get themeRepository => get<_i976.ThemeRepository>();
 
-  _i115.LoginCubit get loginCubit => get<_i115.LoginCubit>();
-
   _i851.ThemeCubit get themeCubit => get<_i851.ThemeCubit>();
 
   _i854.RegisterRepositoryImpl get registerRepositoryImpl =>
       get<_i854.RegisterRepositoryImpl>();
 
+  _i350.LoginRepositoryImpl get loginRepositoryImpl =>
+      get<_i350.LoginRepositoryImpl>();
+
   _i56.RegisterUsecase get registerUsecase => get<_i56.RegisterUsecase>();
 
+  _i383.LgoinUsecase get lgoinUsecase => get<_i383.LgoinUsecase>();
+
+  _i987.LoginWithAppleUsecase get loginWithAppleUsecase =>
+      get<_i987.LoginWithAppleUsecase>();
+
+  _i328.LoginWithGoogleUsecase get loginWithGoogleUsecase =>
+      get<_i328.LoginWithGoogleUsecase>();
+
   _i333.RegisterCubit get registerCubit => get<_i333.RegisterCubit>();
+
+  _i115.LoginCubit get loginCubit => get<_i115.LoginCubit>();
 }
 
 class _$InjectionModule extends _i360.InjectionModule {}

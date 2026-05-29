@@ -3,7 +3,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 class AnimatedNebula extends StatelessWidget {
   const AnimatedNebula({
-    required this.color, required this.width, required this.height, required this.duration, super.key,
+    required this.color,
+    required this.width,
+    required this.height,
+    required this.duration,
+    super.key,
     this.left,
     this.right,
     this.top,

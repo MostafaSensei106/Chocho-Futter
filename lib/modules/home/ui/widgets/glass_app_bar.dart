@@ -39,7 +39,10 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
                   children: [
                     leading ??
                         IconButton(
-                          icon: const Icon(Icons.menu, color: Color(0xFF8870BB)),
+                          icon: const Icon(
+                            Icons.menu,
+                            color: Color(0xFF8870BB),
+                          ),
                           onPressed: () => Scaffold.of(context).openDrawer(),
                         ),
                     Expanded(
